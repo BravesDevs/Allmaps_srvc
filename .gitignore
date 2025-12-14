@@ -49,11 +49,6 @@ Thumbs.db
 .pnpm-store/
 .npm/
 
-# NestJS specific
-/dist/
-/nest-cli.json
-/tsconfig.json
-/tsconfig.build.json
 
 # React specific
 /public/build
