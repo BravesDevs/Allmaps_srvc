@@ -1,0 +1,82 @@
+<mjml>
+  <mj-head>
+    <mj-title>Verify Your Allmaps Email</mj-title>
+    <mj-attributes>
+      <mj-all font-family="Outfit, Inter, Helvetica, Arial, sans-serif" />
+      <mj-text font-size="16px" color="#e0e0e0" line-height="24px" />
+      <mj-button background-color="#bb86fc" color="#000000" font-weight="bold" border-radius="8px" padding="12px 30px" border="none" />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .hover-scale:hover { transform: scale(1.05); transition: transform 0.2s; }
+      .link-style { color: #bb86fc; text-decoration: none; }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#121212">
+    
+    <!-- Header -->
+    <mj-section padding-bottom="20px">
+      <mj-column>
+        <!-- Logo Text Fallback since we don't have a real URL -->
+        <mj-text align="center" font-size="24px" font-weight="bold" color="#ffffff">
+          AllMaps <span style="opacity: 0.7; font-weight: 400;">AI</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    
+    <!-- Hero Section -->
+    <mj-section background-color="#1e1e1e" border-radius="16px" padding="40px 20px">
+      <mj-column>
+        <mj-text align="center" font-size="32px" font-weight="bold" color="#ffffff" line-height="1.2">
+          Chart Your Knowledge.
+        </mj-text>
+        <mj-text align="center" padding-top="10px" font-size="18px" color="#b0b0b0">
+          Confirm your email to unlock personalized roadmaps and save your journey.
+        </mj-text>
+
+        <!-- Progress Bar (Subtle) -->
+        <mj-divider border-width="0px" padding="15px" />
+        <mj-text align="center" font-size="12px" color="#666666" letter-spacing="1px" text-transform="uppercase">
+          Verification Step 1 of 3
+        </mj-text>
+        <mj-raw>
+          <div style="background:#333333; border-radius:10px; height:4px; width:100px; margin:0 auto; overflow:hidden;">
+            <div style="background:#bb86fc; height:100%; width:33%;"></div>
+          </div>
+        </mj-raw>
+
+        <mj-divider border-width="0px" padding="20px" />
+
+        <mj-text>
+          Hi {{name}},
+        </mj-text>
+        <mj-text>
+          Welcome to Allmaps! You're just one click away from mapping your learning adventure. 
+        </mj-text>
+        
+        <mj-button href="{{verificationLink}}" css-class="hover-scale">
+          Verify Email Now
+        </mj-button>
+        
+        <mj-text align="center" font-size="14px" padding-top="20px">
+          or copy this link:
+          <br/>
+          <a href="{{verificationLink}}" style="color: #bb86fc; text-decoration: underline;">{{verificationLink}}</a>
+        </mj-text>
+
+         <mj-text align="center" font-style="italic" color="#666666" font-size="14px" padding-top="30px">
+          "The journey of a thousand miles begins with a single step."
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer -->
+    <mj-section>
+      <mj-column>
+        <mj-text align="center" font-size="12px" color="#444444">
+          © 2025 Allmaps AI. Explore without boundaries.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+  </mj-body>
+</mjml>

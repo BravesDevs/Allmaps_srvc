@@ -1,0 +1,63 @@
+# Dependency directories
+node_modules/
+dist/
+build/
+out/
+.parcel-cache/
+coverage/
+logs/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.history/
+.vs/
+
+# Environment variables
+.env
+.env.*
+*.env
+config/*.env
+config/*.local.env
+
+# Build artifacts
+*.js
+*.d.ts
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+
+# Test and coverage
+.nyc_output/
+junit.xml
+
+# macOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+
+# Other common ignores
+.pnpm-store/
+.npm/
+
+# NestJS specific
+/dist/
+/nest-cli.json
+/tsconfig.json
+/tsconfig.build.json
+
+# React specific
+/public/build
+src/**/*.js
+src/**/*.jsx
+src/**/*.d.ts
+

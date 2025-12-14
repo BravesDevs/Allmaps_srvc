@@ -1,0 +1,29 @@
+generator client {
+  provider     = "prisma-client"
+  moduleFormat = "cjs"
+  output       = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id                Int       @id @default(autoincrement())
+  email             String    @unique
+  password          String
+  isEmailVerified   Boolean   @default(false)
+  verificationToken String?
+  createdAt         DateTime  @default(now())
+  roadmaps          Roadmap[]
+}
+
+model Roadmap {
+  id         Int      @id @default(autoincrement())
+  topic      String
+  difficulty String
+  data       Json
+  createdAt  DateTime @default(now())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+}
