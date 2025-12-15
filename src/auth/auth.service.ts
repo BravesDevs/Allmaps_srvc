@@ -106,6 +106,7 @@ export class AuthService {
             return { message: "Account created! Please check your email to verify your account.", user: { id: newUser.id, email: newUser.email } };
 
         } catch (error) {
+            console.log(error);
             if (error.code === 'P2002') {
                 throw new BadRequestException('Email already exists');
             }
