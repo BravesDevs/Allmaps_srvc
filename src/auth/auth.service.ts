@@ -14,27 +14,30 @@ export class AuthService {
     private readonly logger = new Logger(AuthService.name);
     private transporter;
 
-    constructor(
-        private usersService: UsersService,
-        private jwtService: JwtService,
-        private configService: ConfigService
-    ) {
-        const mailHost = this.configService.get<string>('MAIL_HOST');
-        const mailPort = this.configService.get<number>('MAIL_PORT') || 587;
-        const mailUser = this.configService.get<string>('MAIL_USER');
+    // auth.service.ts
 
-        this.logger.log(`Initializing Nodemailer with Host: ${mailHost}, Port: ${mailPort}, User: ${mailUser}`);
+constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+    private configService: ConfigService
+) {
+    const mailHost = this.configService.get<string>('MAIL_HOST');
+    const mailPort = parseInt(this.configService.get<string>('MAIL_PORT') || '587', 10);
+    const mailUser = this.configService.get<string>('MAIL_USER');
 
-        this.transporter = nodemailer.createTransport({
-            host: mailHost,
-            port: mailPort,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: mailUser,
-                pass: this.configService.get<string>('MAIL_PASS')
-            }
-        });
-    }
+    this.logger.log(`Initializing Nodemailer with Host: ${mailHost}, Port: ${mailPort}, User: ${mailUser}`);
+
+    this.transporter = nodemailer.createTransport({
+        host: mailHost,
+        port: mailPort,
+        secure: mailPort === 465, 
+        auth: {
+            user: mailUser,
+            pass: this.configService.get<string>('MAIL_PASS')
+        },
+        family: 4, 
+    });
+}
 
     async validateUser(email: string, pass: string): Promise<any> {
         const user = await this.usersService.findOne(email);
