@@ -16,28 +16,28 @@ export class AuthService {
 
     // auth.service.ts
 
-constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService,
-    private configService: ConfigService
-) {
-    const mailHost = this.configService.get<string>('MAIL_HOST');
-    const mailPort = parseInt(this.configService.get<string>('MAIL_PORT') || '587', 10);
-    const mailUser = this.configService.get<string>('MAIL_USER');
+    constructor(
+        private usersService: UsersService,
+        private jwtService: JwtService,
+        private configService: ConfigService
+    ) {
+        const mailHost = this.configService.get<string>('MAIL_HOST');
+        const mailPort = parseInt(this.configService.get<string>('MAIL_PORT') || '587', 10);
+        const mailUser = this.configService.get<string>('MAIL_USER');
 
-    this.logger.log(`Initializing Nodemailer with Host: ${mailHost}, Port: ${mailPort}, User: ${mailUser}`);
+        this.logger.log(`Initializing Nodemailer with Host: ${mailHost}, Port: ${mailPort}, User: ${mailUser}`);
 
-    this.transporter = nodemailer.createTransport({
-        host: mailHost,
-        port: mailPort,
-        secure: mailPort === 465, 
-        auth: {
-            user: mailUser,
-            pass: this.configService.get<string>('MAIL_PASS')
-        },
-        family: 4, 
-    });
-}
+        this.transporter = nodemailer.createTransport({
+            host: mailHost,
+            port: mailPort,
+            secure: mailPort === 465, // true for 465, false for other ports
+            auth: {
+                user: mailUser,
+                pass: this.configService.get<string>('MAIL_PASS'),
+            },
+            family: 4, // Fix for Docker/Railway IPv6 issues
+        } as nodemailer.TransportOptions); // <--- THIS CAST FIXES THE ERROR
+    }
 
     async validateUser(email: string, pass: string): Promise<any> {
         const user = await this.usersService.findOne(email);
